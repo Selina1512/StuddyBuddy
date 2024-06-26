@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-///
+import 'package:studybuddy/navigation_service/NavigationRoutes.dart';
+
+///appbar
 class NavBar extends StatelessWidget {
 
-  ///
-  NavBar({super.key, required this.onTabChange});
-  ///
-  void Function(int)? onTabChange;
+  ///appbar
+  const NavBar({required this.onTabChange, super.key});
+  ///appbar
+  final void Function(int)? onTabChange;
+
 
 //class _NavBarState extends State<NavBar> {
   //int _selectedIndex = 0;
@@ -20,7 +24,16 @@ class NavBar extends StatelessWidget {
       child: GNav(
         gap: 8,
         tabBorderRadius: 16,
-        onTabChange: (value) => onTabChange!(value),
+        onTabChange: (value) {
+          onTabChange!(value);
+            switch (value) {
+              case 0:
+                context.go(Navigationroutes.root);
+              case 1:
+                context.go(Navigationroutes.deadlineWeek);
+    // Fügen Sie hier weitere Fälle hinzu, wenn Sie mehr Tabs haben
+    }
+        },
         backgroundColor: Colors.white,
         color: Colors.grey[800],
         activeColor: Colors.white,
@@ -30,19 +43,22 @@ class NavBar extends StatelessWidget {
         tabs: [
           GButton(
             icon: Icons.checklist,
+            onPressed: () => context.go('/'),
             //text: 'Deadlines',
-            iconActiveColor: Colors.blue, // Farbe des ausgewählten Icons
-            iconColor: Colors.grey[800], // Farbe des nicht ausgewählten Icons
-            textColor: Colors.blue, // Textfarbe des ausgewählten Tabs
+            iconActiveColor: Colors.blue,
+            iconColor: Colors.grey[800],
+            textColor: Colors.blue,
+          ),
+          GButton(
+            icon: Icons.calendar_today,
+            //text: 'Kalender',
+            onPressed: () => context.go('/deadlineweek'),
+            iconActiveColor: Colors.blue,
+            iconColor: Colors.grey[800],
+            textColor: Colors.blue,
           ),
         ],
       ),
     );
   }
-
-  /*@override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    throw UnimplementedError();
-  }*/
 }

@@ -1,23 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:studybuddy/components/custom_appbar.dart';
+import 'package:studybuddy/components/nav_bar.dart';
+import 'package:studybuddy/createdeadline/create_deadline_model.dart';
+import 'package:studybuddy/createdeadline/create_deadline_provider.dart';
 import 'package:studybuddy/deadline/widget/background_widget.dart';
 
-///
-class CreateExamDeadline extends StatefulWidget {
 
-  ///
-  const CreateExamDeadline({super.key});
 
-  @override
-  CreateExamDeadlineState createState() => CreateExamDeadlineState();
-}
+/// A StatefulWidget that creates a deadline.
+class CreateDeadline extends ConsumerWidget {
 
-///
-class CreateExamDeadlineState extends State<CreateExamDeadline> {
-  int _currentValue = 3;
+  final TextEditingController _taskDescriptionController = TextEditingController();
 
-  ///
+  /// Creates a deadline.
+  CreateDeadline({super.key});
+
+
+  /// A function that creates a new task.
+  //final Function createNewTask;
+  /// A function that adds a task.
+  //final Function addTask;
+
+  //@override
+  //CreateDeadlineState createState() => CreateDeadlineState();
+
+
+
+  /// A BoxDecoration for the container.
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
       color: Colors.white.withOpacity(0.8),
@@ -34,9 +46,14 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final CreateDeadlineController controller =
+    ref.read(createDeadlineControllerProvider);
+    final CreateDeadlineModel model = ref.watch(createDeadlineModelProvider);
+
+
     return Scaffold(
-      appBar: const CustomAppBar(title: 'Create Deadline'),
+      appBar: const CustomAppBar(title: 'Deadline erstellen'),
       body: Stack(
         children: [
           Positioned.fill(
@@ -50,14 +67,16 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                 width: 356,
                 height: 150,
                 decoration: myBoxDecoration(),
-                child: const TextField(
+                child: TextField(
+                  controller: _taskDescriptionController,
                   maxLines: null,
                   keyboardType: TextInputType.multiline,
-                  decoration: InputDecoration(
-                    hintText: 'Klausur Themen: ',
+                  decoration: const InputDecoration(
+                    hintText: 'Aufgabe',
                     contentPadding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 5,),
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
                     border: InputBorder.none,
                   ),
                 ),
@@ -75,10 +94,7 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left:1, top: 5),
-                      child: Text(
-                        'Klausur Termin: ', style: TextStyle(fontSize: 16),
-                      ),
+                      padding: EdgeInsets.only(left: 1, top: 5),
                     ),
                     SizedBox(
                       width: 300,
@@ -87,7 +103,7 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                         mode: CupertinoDatePickerMode.date,
                         initialDateTime: DateTime.now(),
                         onDateTimeChanged: (DateTime newDateTime) {
-                          // Do something when date is changed
+                          controller.selectedDate = newDateTime;
                         },
                       ),
                     ),
@@ -107,7 +123,7 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                 child: Column(
                   children: [
                     const Padding(
-                      padding: EdgeInsets.only(left:1, top: 5),
+                      padding: EdgeInsets.only(left: 1, top: 5),
                       child: Text(
                         'Ungefährer Zeitaufwand: ',
                         style: TextStyle(fontSize: 16),
@@ -116,22 +132,22 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                     Align(
                       alignment: const Alignment(-0.8, 0),
                       child: SizedBox(
-                          width: 75,
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              hintText: 'Stunden',
-                              fillColor: const Color.fromRGBO(217, 217,
-                                  2517, 100,),
-                              filled: true,
-                              contentPadding: const EdgeInsets.only(left: 5),
-                              border: InputBorder.none,
-                              enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15),
-                                borderSide: BorderSide.none,
-                              ),
+                        width: 75,
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                            hintText: 'Stunden',
+                            fillColor: const Color.fromRGBO(217, 217,
+                              2517, 100,),
+                            filled: true,
+                            contentPadding: const EdgeInsets.only(left: 5),
+                            border: InputBorder.none,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                              borderSide: BorderSide.none,
                             ),
                           ),
+                        ),
                       ),
                     ),
                   ],
@@ -151,34 +167,24 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
-                      'In welchem Rythmus möchtest du lernen abschließen?',
+                      'In welchem Rythmus möchtest du die aufgabe abschließen?',
                       style: TextStyle(fontSize: 16),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
-                      height: 20, // Geben Sie den gewünschten Abstand an
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         IconButton(
                           icon: const Icon(Icons.remove),
-                          onPressed: () {
-                            setState(() {
-                              if (_currentValue > 1) {
-                                _currentValue--;
-                              }
-                            });
-                          },
+                          onPressed: controller.decreaseInterval,
                         ),
-                        Text('$_currentValue'),
+                        Text(controller.currentValue.toString()),
                         IconButton(
                           icon: const Icon(Icons.add),
-                          onPressed: () {
-                            setState(() {
-                              _currentValue++;
-                            });
-                          },
+                          onPressed: controller.increaseInterval,
                         ),
                       ],
                     ),
@@ -189,12 +195,33 @@ class CreateExamDeadlineState extends State<CreateExamDeadline> {
           ),
         ],
       ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
+      bottomNavigationBar: NavBar(onTabChange: (int) {  },),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print('Save');
+          controller.saveTaskDetails( _taskDescriptionController.text, controller.selectedDate, 2, 2);
+          context.go('/');
           },
-          child: const Icon(Icons.save),
-        ),
+        child: const Icon(Icons.save),
+      ),
     );
   }
+}
+
+/// A StatefulWidget that creates a deadline.
+abstract class CreateDeadlineController {
+  DateTime get selectedDate;
+
+  set selectedDate(DateTime selectedDate) {}
+
+  /// Increases the interval.
+  void increaseInterval();
+  /// Decreases the interval.
+  void decreaseInterval();
+  /// Returns the current value.
+  int get currentValue;
+  /// Adds a detail.
+  void addDetail(int rhythm);
+  /// Saves the task details.
+  saveTaskDetails(String taskDescription, DateTime date, int time, int rhythm);
 }
