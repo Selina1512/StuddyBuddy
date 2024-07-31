@@ -19,7 +19,8 @@ The welcome screen greets users when they open the app for the first time, promp
 When users click the plus button, they are prompted to specify whether they are adding an exam or coursework, along with the name of the task.
 
 ### Creating a new task
-![](C:\studybuddy\assets\screens\create_new_tasks.png "optional-title")
+![](C:\studybuddy\assets\screens\create_new_tasks.png "optional-title")![create_new_tasks](https://github.com/user-attachments/assets/c0797534-e09f-4c17-92c5-02977f064e27)
+
 After the dialog box, users can enter task details, including the description, deadline, estimated time required to complete it, and the days they plan to study or work on the task.
 
 ### Welcoming Screen when tasks have been created 
