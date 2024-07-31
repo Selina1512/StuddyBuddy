@@ -36,16 +36,14 @@ After the dialog box, users can enter task details, including the description, d
 Once tasks are created, the user can view all their exams and coursework in one place. They can click on any task to see more details. The app shows the number of days left until each task's deadline, helping users prioritize their workload. Completing tasks is rewarding, as it gives students a sense of accomplishment and motivation.
 
 ### deadline details
-![](C:\studybuddy\assets\screens\detail.png "optional-title")
-![detail](https://github.com/user-attachments/assets/e69ca6dd-71fe-46f2-9e32-ac9cee18990e)
-![weekly_overview](https://github.com/user-attachments/assets/186e40a6-8437-4dad-ba50-1885526d036b)
+![detail](https://github.com/user-attachments/assets/272be2f4-5489-46a0-bd92-1fa48d7c01bf)
+
 
 When a task is selected, users can view its details, including the description and deadline.
 
 ### weekly overview
-![Uploading weekly_overview.png…]()
+![weekly_overview](https://github.com/user-attachments/assets/779434ee-c9d9-40b8-bc46-23451a4c6645)
 
-![](C:\studybuddy\assets\screens\detail.png "optional-title")
 
 This page shows users what they need to study or work on each day, enabling them to plan their week efficiently. This overview helps prevent procrastination and keeps students organized.
 
