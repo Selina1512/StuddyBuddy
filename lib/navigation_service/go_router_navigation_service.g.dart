@@ -9,7 +9,9 @@ part of 'go_router_navigation_service.dart';
 String _$goRouterNavigationServiceHash() =>
     r'03f47de3384902e820ea064ae44135f1096dffa4';
 
-/// See also [goRouterNavigationService].
+///Provider for GoRouterNavigationService
+///
+/// Copied from [goRouterNavigationService].
 @ProviderFor(goRouterNavigationService)
 final goRouterNavigationServiceProvider =
     AutoDisposeProvider<NavigationServiceAggregator>.internal(

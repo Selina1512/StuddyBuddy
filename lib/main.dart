@@ -1,21 +1,21 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:studybuddy/database/task/tasks_model.dart';
+import 'package:studybuddy/database/task_details/task_details_model.dart';
+import 'package:studybuddy/go_router.dart';
 
-import 'database/boxTask.dart';
-import 'database/task_details.dart';
-import 'database/tasks.dart';
-import 'go_router.dart';
-
-void main() async {
-  await Hive.initFlutter();
-  Hive.registerAdapter(TasksAdapter());
-  Hive.registerAdapter(TaskDetailsAdapter());
-  boxTask = await Hive.openBox<Tasks>('taskBox');
-  await Hive.openBox<TaskDetails>('taskDetails');
-
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive
+    ..registerAdapter(TaskDetailsModelAdapter())
+    ..registerAdapter(TasksModelAdapter());
+
+  await Hive.openBox<TaskDetailsModel>('taskDetails');
+  await Hive.openBox<TasksModel>('tasksneu');
+
   await EasyLocalization.ensureInitialized();
   final ProviderContainer providerContainer = ProviderContainer();
 
@@ -23,10 +23,8 @@ void main() async {
       await buildApp(providerContainer: providerContainer)
   );
 }
-/*runApp(
-await buildApp(providerContainer: providerContainer)
-);*/
-//await Hive.openBox<TaskDetails>('taskDetails');
+
+/// Builds the app.
 Future<Widget> buildApp({
   required final ProviderContainer providerContainer,
 }) async {
@@ -47,5 +45,3 @@ Future<Widget> buildApp({
     ),
   );
 }
-
-

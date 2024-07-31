@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:studybuddy/database/boxTask.dart';
 import 'package:studybuddy/database/tasks.dart';
@@ -40,6 +41,14 @@ class DeadlineDefaultController extends _$DeadlineDefaultController
   List<List<dynamic>> deadlineList = [
     ['Abgabe: ', true, 'Spanisch', 'noch: 20 Tage',],
   ];
+
+  Future<Box<Tasks>> get _box async => await Hive.openBox<Tasks>('tasks');
+
+
+  Future<List<Tasks>> getAllTodos() async {
+    var box = await _box;
+    return box.values.toList();
+  }
 
   @override
   void addTask(bool isExam, String taskName) {
