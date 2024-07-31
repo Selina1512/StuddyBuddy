@@ -11,29 +11,40 @@ The target audience for StuddyBuddy includes university and college students who
 
 ## Screens
 ### Welcoming Screen
+![welcoming_screen](https://github.com/user-attachments/assets/2d93bf9a-aa2d-47df-b4d1-6a6f4d11384e)
+
 ![](C:\studybuddy\assets\screens\welcoming_screen.png "optional-title")
 
 The welcome screen greets users when they open the app for the first time, prompting them to create a new task with their StudyBuddy.
 ### Welcoming Screen with dialog box
+![dialog_box](https://github.com/user-attachments/assets/5282476b-1a9e-4b1e-a1e6-1e7b08323415)
+
 ![](C:\studybuddy\assets\screens\dialog_box.png "optional-title")
 When users click the plus button, they are prompted to specify whether they are adding an exam or coursework, along with the name of the task.
 
 ### Creating a new task
-![](C:\studybuddy\assets\screens\create_new_tasks.png "optional-title")![create_new_tasks](https://github.com/user-attachments/assets/c0797534-e09f-4c17-92c5-02977f064e27)
+![create_new_tasks](https://github.com/user-attachments/assets/97317098-a9d4-482d-ab41-6fccf576d3b5)
+
+![](C:\studybuddy\assets\screens\create_new_tasks.png "optional-title")![create_new_tasks]
 
 After the dialog box, users can enter task details, including the description, deadline, estimated time required to complete it, and the days they plan to study or work on the task.
 
 ### Welcoming Screen when tasks have been created 
 ![](C:\studybuddy\assets\screens\tasks.png "optional-title")
+![tasks](https://github.com/user-attachments/assets/9ffae188-46b1-4d91-a592-4dea3829643b)
 
 Once tasks are created, the user can view all their exams and coursework in one place. They can click on any task to see more details. The app shows the number of days left until each task's deadline, helping users prioritize their workload. Completing tasks is rewarding, as it gives students a sense of accomplishment and motivation.
 
 ### deadline details
 ![](C:\studybuddy\assets\screens\detail.png "optional-title")
+![detail](https://github.com/user-attachments/assets/e69ca6dd-71fe-46f2-9e32-ac9cee18990e)
+![weekly_overview](https://github.com/user-attachments/assets/186e40a6-8437-4dad-ba50-1885526d036b)
 
 When a task is selected, users can view its details, including the description and deadline.
 
 ### weekly overview
+![Uploading weekly_overview.png…]()
+
 ![](C:\studybuddy\assets\screens\detail.png "optional-title")
 
 This page shows users what they need to study or work on each day, enabling them to plan their week efficiently. This overview helps prevent procrastination and keeps students organized.
