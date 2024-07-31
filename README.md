@@ -50,3 +50,5 @@ This page shows users what they need to study or work on each day, enabling them
 
 ## Architecture
 The app follows a feature-first architecture, where each page is composed of a model, controller, and view. The model handles data management, the controller manages application logic, and the view is responsible for presenting data to the user.
+![image](https://github.com/user-attachments/assets/a74ecd58-09ad-437a-8a7b-db8844c83420)
+
